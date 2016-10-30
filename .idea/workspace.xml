@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f96008-f153-4c2d-9345-d6ad1701af9c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/ruby_bot.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ruby_bot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -393,7 +390,7 @@
       <workItem from="1477573810834" duration="8486000" />
       <workItem from="1477600840801" duration="19616000" />
       <workItem from="1477763994586" duration="11622000" />
-      <workItem from="1477834769184" duration="8655000" />
+      <workItem from="1477834769184" duration="8754000" />
     </task>
     <task id="LOCAL-00001" summary="commit procfile">
       <created>1477862542392</created>
@@ -402,11 +399,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477862542392</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add .gitignore">
+      <created>1477863048333</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1477863048333</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48379000" />
+    <option name="totallyTimeSpent" value="48478000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -453,7 +457,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit procfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit procfile" />
+    <MESSAGE value="add .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="add .gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
