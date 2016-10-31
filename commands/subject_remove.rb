@@ -1,0 +1,2 @@
+class Subject_remove
+end

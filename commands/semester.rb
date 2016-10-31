@@ -24,9 +24,10 @@ class Semester
   end
 
   def when_end_learning(message)
-    pattern = /((0[1-9]|1[012])-(0[1-9]|[12]\d)|(0[13-9]|1[012])-30|(0[13578]|1[02])-31)-(20\d\d)/
+    clean_message = message.lstrip
+    pattern = /((0[1-9]|[12]\d)|(0[13-9]|1[012])-30|(0[13578]|1[02])-31-(0[1-9]|1[012]))-(20\d\d)/
 
-    unless message =~ pattern
+    unless clean_message =~ pattern
       @bot.api.send_sticker(chat_id: @user_id, sticker: "BQADAgADzwIAAj-VzAqZJmrw1nWAUAI")
 
       return @dialog_step
@@ -39,9 +40,10 @@ class Semester
   end
 
   def send_all_time(message)
-    pattern = /((0[1-9]|1[012])-(0[1-9]|[12]\d)|(0[13-9]|1[012])-30|(0[13578]|1[02])-31)-20\d\d/
+    clean_message = message.lstrip
+    pattern = /((0[1-9]|[12]\d)|(0[13-9]|1[012])-30|(0[13578]|1[02])-31-(0[1-9]|1[012]))-(20\d\d)/
 
-    unless message =~ pattern
+    unless clean_message =~ pattern
       @bot.api.send_sticker(chat_id: @user_id, sticker: "BQADAgADzwIAAj-VzAqZJmrw1nWAUAI")
 
       return @dialog_step
@@ -73,3 +75,5 @@ class Semester
   end
 
 end
+
+
