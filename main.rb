@@ -24,7 +24,7 @@ DESC_COMMANDS = {
     '/reset' => 'Сбрасывает для пользователя все данные.'
 }
 
-active_commands = [] #TODO: Не забыть исправить!!!
+active_commands = {} #TODO: Не забыть исправить!!!
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|

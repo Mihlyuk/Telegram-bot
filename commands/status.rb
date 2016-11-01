@@ -34,7 +34,7 @@ class Status
 
       unmade_labs = []
       made_labs.each_with_index { |value, key| unmade_labs << key + 1 unless value }
-      unmade_labs = unmade_labs.size == 0 ? "Лаб больше не осталось =(" : "Оставшиеся: #{unmade_labs}"
+      unmade_labs = unmade_labs.empty? ? "Лаб больше не осталось =(" : "Оставшиеся: #{unmade_labs}"
 
       made_labs_count = made_labs.count { |i| i } # Ох*@ть можно, как круто!!!
       need_made_labs = (labs_count * elapsed_time / available_time.to_f).ceil

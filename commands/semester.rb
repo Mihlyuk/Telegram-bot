@@ -25,7 +25,7 @@ class Semester
 
   def when_end_learning(message)
     clean_message = message.lstrip
-    pattern = /((0[1-9]|[12]\d)|(0[13-9]|1[012])-30|(0[13578]|1[02])-31-(0[1-9]|1[012]))-(20\d\d)/
+    pattern = /((0[1-9]|[12]\d)-(0[1-9]|1[012])|(30-0[13-9]|1[012])|(31-0[13578]|1[02]))-20\d\d/
 
     unless clean_message =~ pattern
       @bot.api.send_sticker(chat_id: @user_id, sticker: "BQADAgADzwIAAj-VzAqZJmrw1nWAUAI")
@@ -41,7 +41,7 @@ class Semester
 
   def send_all_time(message)
     clean_message = message.lstrip
-    pattern = /((0[1-9]|[12]\d)|(0[13-9]|1[012])-30|(0[13578]|1[02])-31-(0[1-9]|1[012]))-(20\d\d)/
+    pattern = /((0[1-9]|[12]\d)-(0[1-9]|1[012])|(30-0[13-9]|1[012])|(31-0[13578]|1[02]))-20\d\d/
 
     unless clean_message =~ pattern
       @bot.api.send_sticker(chat_id: @user_id, sticker: "BQADAgADzwIAAj-VzAqZJmrw1nWAUAI")
@@ -49,12 +49,18 @@ class Semester
       return @dialog_step
     end
 
-    @database.hmset(@user_id, 'finish_date', message)
-
     start_date = Date.strptime(@database.hget(@user_id, 'start_date'), '%d-%m-%Y')
-    finish_date = Date.strptime(@database.hget(@user_id, 'finish_date'), '%d-%m-%Y')
+    finish_date = Date.strptime(message)
 
     available_time = (finish_date - start_date).to_i
+
+    if available_time <= 0
+      @bot.api.send_message(chat_id: @user_id, text: "Некорректно набрана дата")
+
+      return @dialog_step
+    end
+
+    @database.hmset(@user_id, 'finish_date', message)
 
     message = "На все про все у тебя #{available_time} #{decline(available_time, 'дней', 'день', 'дня')}"
 
