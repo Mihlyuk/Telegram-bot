@@ -1,4 +1,6 @@
-class Submit
+require_relative '../commands/command.rb'
+
+class Submit < Command
 
   def initialize(bot, user_id, database)
     @dialog_step = 1
@@ -17,9 +19,18 @@ class Submit
     end
   end
 
+  def Submit.check_name(text)
+    text == '/submit'
+  end
+
   def what_passed
+    unless @database.hexists(@user_id, 'subjects')
+      @database.hset(@user_id, 'subjects', {}.to_json)
+    end
+
     @labs = JSON.parse(@database.hget(@user_id, 'subjects')).keys
 
+    #TODO: Если не пришло предметов, добавить
     answer = "Что сдавал?\n"
     @labs.each_with_index { |value, key|
       answer += "#{key + 1}. #{value}\n"
@@ -48,9 +59,10 @@ class Submit
     subject = subjects[subject_name]
     made_labs = JSON.parse(subject['made_labs'])
 
-    unless message.lstrip =~ /\d+/ && message.to_i <= made_labs.size
+    unless message.lstrip =~ /\d+/ && message.to_i <= made_labs.size && message.to_i >= 0
       @bot.api.send_sticker(chat_id: @user_id, sticker: "BQADAgADzwIAAj-VzAqZJmrw1nWAUAI")
 
+      @bot.api.send_message(chat_id: @user_id, text: 'Какая лаба?')
       return @dialog_step
     end
 

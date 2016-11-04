@@ -1,4 +1,6 @@
-class Semester
+require_relative '../commands/command.rb'
+
+class Semester < Command
 
   def initialize(bot, user_id, database)
     @dialog_step = 1
@@ -7,6 +9,14 @@ class Semester
     @database = database
 
     @database.set('users', user_id)
+  end
+
+  def get_dialog_step
+    @dialog_step
+  end
+
+  def Semester.check_name(name)
+    name == '/semester'
   end
 
   def give_answer(message)
@@ -30,7 +40,7 @@ class Semester
     unless clean_message =~ pattern
       @bot.api.send_sticker(chat_id: @user_id, sticker: "BQADAgADzwIAAj-VzAqZJmrw1nWAUAI")
 
-      return @dialog_step
+      return  @dialog_step
     end
 
     @database.hmset(@user_id, 'start_date', message)
@@ -50,7 +60,7 @@ class Semester
     end
 
     start_date = Date.strptime(@database.hget(@user_id, 'start_date'), '%d-%m-%Y')
-    finish_date = Date.strptime(message)
+    finish_date = Date.strptime(message, '%d-%m-%Y')
 
     available_time = (finish_date - start_date).to_i
 
@@ -67,17 +77,6 @@ class Semester
     @bot.api.send_message(chat_id: @user_id, text: message)
 
     @dialog_step = 0
-  end
-
-  def decline(number, first_dec, sec_dec, third_dec)
-    string = number.to_s
-    decisive_letter = string[string.length - 1]
-
-    case decisive_letter
-      when '0', '5', '6', '7', '8', '9' then return first_dec
-      when '1' then return sec_dec
-      when '2', '3', '4' then return third_dec
-    end
   end
 
 end

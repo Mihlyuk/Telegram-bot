@@ -1,4 +1,7 @@
-class Subject
+require_relative '../commands/command.rb'
+
+class Subject < Command
+
   def initialize(bot, user_id, database)
     @dialog_step = 1
     @bot = bot
@@ -14,6 +17,10 @@ class Subject
       when 2 then labs_count(message)
       when 3 then send_OK(message)
     end
+  end
+
+  def Subject.check_name(text)
+    text == '/subject'
   end
 
   def teach_subject

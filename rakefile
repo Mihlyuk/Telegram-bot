@@ -1,4 +1,13 @@
+require 'redis'
+require 'curl'
+require 'json'
+require 'cgi'
+
+db = Redis.new
+curl = CURL.new
+
 desc "This task is called by the Heroku scheduler add-on"
-task :update_feed do
-  puts "Updating feed..."
+task :reminder do
+  db = Redis.new
+  puts db.ping
 end

@@ -1,4 +1,7 @@
-class Reset
+require_relative '../commands/command.rb'
+
+class Reset < Command
+
   def initialize(bot, user_id, database)
     @dialog_step = 1
     @bot = bot
@@ -8,9 +11,12 @@ class Reset
     @database.set('users', user_id)
   end
 
-  def give_answer
-    @database.del(@user_id, 'subjects')
+  def Reset.check_name(name)
+    name == '/reset'
+  end
 
+  def give_answer(text)
+    @database.del(@user_id, 'subjects')
     @database.del(@user_id, 'start_date')
     @database.del(@user_id, 'finish_date')
 

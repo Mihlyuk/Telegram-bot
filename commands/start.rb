@@ -1,4 +1,6 @@
-class Start
+require_relative '../commands/command.rb'
+
+class Start < Command
 
   def initialize(bot, user_id, database)
     @dialog_step = 1
@@ -7,7 +9,11 @@ class Start
     @database = database
   end
 
-  def give_answer
+  def Start.check_name(name)
+    name == '/start'
+  end
+
+  def give_answer(text)
     result_string = "Привет, я твой персональный помощник, я помогу сдать тебе все лабы. Смотри, что я умею: \n"
     keys = DESC_COMMANDS.keys
 

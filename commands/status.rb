@@ -1,9 +1,16 @@
-class Status
+require_relative '../commands/command.rb'
+
+class Status < Command
+
   def initialize(bot, user_id, database)
     @dialog_step = 1
     @bot = bot
     @user_id = user_id
     @database = database
+  end
+
+  def Status.check_name(text)
+    text == '/status'
   end
 
   def give_answer(message)
@@ -18,6 +25,8 @@ class Status
     end
 
     subjects = JSON.parse(@database.hget(@user_id, 'subjects'))
+
+    #TODO: если subject == 0 просить ввести предметы
 
     start_date = Date.strptime(@database.hget(@user_id, 'start_date'), '%d-%m-%Y')
     finish_date = Date.strptime(@database.hget(@user_id, 'finish_date'), '%d-%m-%Y')
@@ -38,6 +47,8 @@ class Status
 
       made_labs_count = made_labs.count { |i| i } # Ох*@ть можно, как круто!!!
       need_made_labs = (labs_count * elapsed_time / available_time.to_f).ceil
+      need_made_labs = 0 if need_made_labs < 0
+      need_made_labs = labs_count if need_made_labs > labs_count
 
       statistic = "#{subject_name}\n   Должно быть сдано: #{need_made_labs}/#{labs_count}\n   Сдано: #{made_labs_count}/#{labs_count}\n   #{unmade_labs}\n\n"
 
@@ -47,17 +58,6 @@ class Status
     @bot.api.send_message(chat_id: @user_id, text: answer)
 
     @dialog_step = 0
-  end
-
-  def decline(number, first_dec, sec_dec, third_dec)
-    string = number.to_s
-    decisive_letter = string[string.length - 1]
-
-    case decisive_letter
-      when '0', '5', '6', '7', '8', '9' then return first_dec
-      when '1' then return sec_dec
-      when '2', '3', '4' then return third_dec
-    end
   end
 
 end
