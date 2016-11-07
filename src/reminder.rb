@@ -18,7 +18,7 @@ class Reminder
   private
 
   def Reminder.right_hour(hour)
-    hour_now = DateTime.now.strftime('%H').to_i
+    hour_now = DateTime.now.strftime('%H').to_i + 3 #Надеюсь никто этого не увидит
     minute_now = DateTime.now.strftime('%M').to_i
 
     hour == hour_now || (hour - 1 == hour_now && minute_now > 55)
