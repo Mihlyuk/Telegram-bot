@@ -40,10 +40,8 @@ class Command
   private
 
   def check_bound(number, min, max)
-    number >= min && number <= max
+    number.to_i >= min && number.to_i < max
   end
-
-
 
   def check_date(message, regular)
     message =~ regular

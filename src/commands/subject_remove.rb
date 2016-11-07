@@ -29,10 +29,10 @@ class Subject_remove < Command
   end
 
   def send_ok(subject_number)
-    return Answer::INCORRECT_LABS_COUNT unless message =~ Regular::LABS_COUNT
-    return Answer::DONT_HAVE_LABS unless check_bound(message.to_i - 1, 0, @subjects.size)
+    return Answer::INCORRECT_LABS_COUNT unless subject_number =~ Regular::LABS_COUNT
+    return Answer::DONT_HAVE_LABS unless check_bound(subject_number.to_i - 1, 0, @subjects.size)
 
-    key = @subjects.keys[subject_number - 1]
+    key = @subjects.keys[subject_number.to_i - 1]
     @subjects.delete(key)
 
     @dialog_step = 0

@@ -28,10 +28,11 @@ class Answer
 
   WHAT_LAB = 'Какая лаба?'
 
-  ENTER_REMIND_TIME = 'Введите время напоминания (Понедельник 4.00)'
+  ENTER_REMIND_TIME = 'Введите время напоминания (например: понедельник 4.00)'
   REMIND_MENU = "1. Добавить напоминание\n2. Удалить напоминание."
   INCORRECT_TIME = 'Мне кажется ты ввел неправильное время.'
   EMPTY_REMINDERS = 'У тебя нет напоминаний)'
+  INCORRECT_REMIND_NUMBER = 'Хм, мне кажется нет такого напоминания'
 
   def Answer.WHAT_SUBJECT_PASSED(subjects)
     "Какой предмет сдавал?\n\n" + subjects.keys.map.with_index { |value, key| "#{key + 1}. #{value}\n" }.join('')
@@ -44,7 +45,7 @@ class Answer
   end
 
   def Answer.WHAT_SUBJECT_REMOVE(subjects)
-    "Какой предмет удалим?\n\n" + subjects.map.with_index { |value, key| "#{key + 1}. #{value}\n" }.join('')
+    "Какой предмет удалим?\n\n" + subjects.keys.map.with_index { |value, key| "#{key + 1}. #{value}\n" }.join('')
   end
 
   def Answer.HOW_MANY_DAYS_YOU_HAVE(available_time)

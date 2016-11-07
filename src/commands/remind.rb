@@ -54,6 +54,9 @@ class Remind < Command
   end
 
   def choose_reminder(message)
+    return Answer::INCORRECT_REMIND_NUMBER unless message =~ Regular::LABS_COUNT
+    return Answer::INCORRECT_REMIND_NUMBER unless check_bound(message.to_i - 1, 0, @reminders.length)
+
     index = message.to_i - 1
 
     @reminders.delete_at(index)

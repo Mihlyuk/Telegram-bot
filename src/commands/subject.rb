@@ -43,6 +43,7 @@ class Subject < Command
 
   def send_ok(labs_count)
     return Answer::INCORRECT_LABS_COUNT unless labs_count =~ Regular::LABS_COUNT
+    return Answer::INCORRECT_LABS_COUNT unless check_bound(labs_count, 1, 20)
 
     @subjects[@subject] = {
         'labs_count' => labs_count.to_i,

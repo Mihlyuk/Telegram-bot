@@ -12,8 +12,6 @@ class Semester < Command
     @available_days = ''
   end
 
-
-
   def say(message)
     case @dialog_step
     when 1 then begin_dialog
