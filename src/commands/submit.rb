@@ -39,7 +39,7 @@ class Submit < Command
   def send_ok(message)
     made_labs = @subjects[@subject_key]['made_labs']
 
-    return Answer::INCORRECT_SUBJECT unless message =~ Regular::LABS_COUNT
+    return Answer::DONT_HAVE_LABS unless message =~ Regular::LABS_COUNT
     return Answer::DONT_HAVE_LABS unless check_bound(message.to_i - 1, 0, made_labs.size)
 
     made_labs[message.to_i - 1] = true
