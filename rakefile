@@ -17,7 +17,7 @@ task :init_database do
 end
 
 desc 'This task is drop database'
-task :init_database do
+task :clear_database do
   db = Redis.new
   db.set('users', {}.to_json)
 
