@@ -21,7 +21,7 @@ class Reminder
     hour_now = DateTime.now.strftime('%H').to_i
     minute_now = DateTime.now.strftime('%M').to_i
 
-    hour == hour_now || (hour - 1 == hour_now && minute_now > 50)
+    hour == hour_now || (hour - 1 == hour_now && minute_now > 55)
   end
 
 end
