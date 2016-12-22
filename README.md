@@ -57,7 +57,7 @@ Boat based on the data you have entered the start and end of the semester, the n
 > Let's pull devil!
 ```
 
-"Bot able to remember what items you passed. To do this, add the command '/ submit', which can also be activated by the message 'I have passed'. After the activation of the command you to come all your items separate _knopkami_. In the example of the button will show through the brackets. Once you have selected the object name, it sends you a new key to all numbers of the remaining labs.
+"Bot able to remember what items you passed. To do this, add the command '/submit', which can also be activated by the message 'I have passed'. After the activation of the command you to come all your items separate _press_. In the example of the button will show through the brackets. Once you have selected the object name, it sends you a new key to all numbers of the remaining labs.
 
 ##### Examples of commands:
 
